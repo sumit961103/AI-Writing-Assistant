@@ -2,11 +2,11 @@ import streamlit as st
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
-
-load_dotenv()
-
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-
+import streamlit as st
+try:
+    GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+except:
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")  # fallback for local
 # Free tier compatible Gemini models
 MODELS_TO_TRY = [
     "gemini-2.5-flash",        # Best free tier model (2026)
